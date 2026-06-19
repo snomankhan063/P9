@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Team Stats</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    h2 {
+      color: darkblue;
+    }
+    .box {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Team Stats</h1>
+
+  <div class="box">
+    <h2>Players</h2>
+    <ul id="playersList"></ul>
+  </div>
+
+  <div class="box">
+    <h2>Games</h2>
+    <ul id="gamesList"></ul>
+  </div>
+
+  <script>
+    const team = {
+      _players: [
+        { firstName: 'LeBron', lastName: 'James', age: 38 },
+        { firstName: 'Stephen', lastName: 'Curry', age: 36 },
+        { firstName: 'Kevin', lastName: 'Durant', age: 35 }
+      ],
+
+      _games: [
+        { opponent: 'Warriors', teamPoints: 110, opponentPoints: 108 },
+        { opponent: 'Lakers', teamPoints: 95, opponentPoints: 99 },
+        { opponent: 'Nets', teamPoints: 120, opponentPoints: 115 }
+      ],
+
+      get players() {
+        return this._players;
+      },
+
+      get games() {
+        return this._games;
+      },
+
+      addPlayer(firstName, lastName, age) {
+        this._players.push({ firstName, lastName, age });
+      },
+
+      addGame(opponent, teamPoints, opponentPoints) {
+        this._games.push({ opponent, teamPoints, opponentPoints });
+      }
+    };
+
+    // Add new data
+    team.addPlayer('Bugs', 'Bunny', 76);
+    team.addGame('Titans', 100, 98);
+
+    // Display players
+    const playersList = document.getElementById('playersList');
+    team.players.forEach(player => {
+      const li = document.createElement('li');
+      li.textContent = `${player.firstName} ${player.lastName} (Age: ${player.age})`;
+      playersList.appendChild(li);
+    });
+
+    // Display games
+    const gamesList = document.getElementById('gamesList');
+    team.games.forEach(game => {
+      const li = document.createElement('li');
+      li.textContent = `Vs ${game.opponent} - ${game.teamPoints}:${game.opponentPoints}`;
+      gamesList.appendChild(li);
+    });
+
+  </script>
+
+</body>
+</html>ss
